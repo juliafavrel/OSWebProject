@@ -1,0 +1,15 @@
+
+
+.flex-container {
+  display: flex; /* or inline-flex */
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start
+  align-content: space-between;
+}
+
+.flex-item {
+  align-self: flex-start;
+}
+
