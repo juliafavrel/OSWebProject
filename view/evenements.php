@@ -2,7 +2,18 @@
 
 <?php include("entete.php"); ?>
 
-<?php include("rechercher.php"); ?>
+    <form method="get" action="../view/searchEvt.php" accept-charset="utf-8" class="col s12" >
+      <div class="row">
+        <div class="input-field col s3 offset-s9">
+
+         <i class="material-icons prefix">search</i>
+
+          <input id="search" name="search" type="text" class="validate">
+          <label for="search">Rechercher</label>
+
+        </div>
+      </div>
+    </form>
 
 
   <div class="container">

@@ -6,11 +6,11 @@
 
 <!--Barre de recherche-->
 
-    <form method="get" action="../view/search.php" accept-charset="utf-8" class="col s12" >
+    <form method="get" action="../view/searchPerson.php" accept-charset="utf-8" class="col s12" >
       <div class="row">
         <div class="input-field col s3 offset-s9">
 
-          <i class="material-icons prefix">search</i>
+         <i class="material-icons prefix">search</i>
 
           <input id="search" name="search" type="text" class="validate">
           <label for="search">Rechercher</label>

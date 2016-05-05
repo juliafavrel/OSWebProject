@@ -5,7 +5,7 @@
   <div class="container">
     <div class="section">
 
-    <h1>Suppretion de client</h1>
+    <h1>Suppression de client</h1>
 
       <div class="row">
         <form method="post" action="../controller/editPerson.php" class="col s12">

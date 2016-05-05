@@ -24,9 +24,8 @@ class ModelEvent{
         
         $res=$sql->execute();
 
-        header('Location: ../view/evenements.php');
-        
-        print_r($sql->errorInfo()); // Au cas ou tu veux savoir ou ya une erreur
+        echo "<script type='text/javascript'>document.location.replace('../view/evenements.php');</script>";
+
     }
 
 
@@ -43,6 +42,24 @@ class ModelEvent{
             $result = $users->fetchAll();
             return $result;
     }
+
+      public static function searchEvt($search) {
+
+            $servername = "localhost";
+            $username = "juju";
+            $pass = "salut";
+            $dbname = "club";
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $pass);
+            //Prepare the selection
+
+            $req = $conn->prepare('SELECT * FROM event 
+                                 WHERE nameEvt LIKE "%":search"%" 
+                                 OR descEvt LIKE "%":search"%"'); 
+
+            $req->execute($search); //Execution of the request
+            $data = $req->fetchAll(); //List all the result in array
+            return $data; //Return the array
+        }
 
 
 

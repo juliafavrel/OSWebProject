@@ -24,22 +24,22 @@
                     </thead>
 
                     <tbody>
-                      <?php 
 
+                      <?php 
                         require_once  '../model/ModelPerson.php';
 
-                        $search = $_GET['search'];
-                        
-                        $datas = ModelPerson::searchPerson($search);
+                        $tab=array(
+                                      'search' => $_GET['search'],
+                                  );
 
+                        $datas = ModelPerson::searchPerson($tab);
                         foreach($datas as $data) {
-
-                         print "<tr> <td>" .  $person["idPerson"] . "</td>";
-                         print "<td>" .  $person["lastName"] . "</td>";
-                         print "<td>" .  $person["firstName"] . "</td>";
-                         print "<td>" .  $person["mail"] . "</td>";
-                         print "<td>" .  $person["phone"] . "</td> </tr>";
-                        }
+                           print "<tr> <td>" .  $data["idPerson"] . "</td>";
+                           print "<td>" .  $data["lastName"] . "</td>";
+                           print "<td>" .  $data["firstName"] . "</td>";
+                           print "<td>" .  $data["mail"] . "</td>";
+                           print "<td>" .  $data["phone"] . "</td> </tr>";
+                          }
                         ?>
                   </tbody>
             </table>

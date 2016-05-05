@@ -11,11 +11,13 @@ require_once  '../model/ModelPerson.php';
 		{*/
 				$idPerson = $_POST['idPerson'];
 
-				$tab=array(
+				$supp=array(
 					            'idPerson' => $idPerson,
 					        );
 		//}
-					ModelPerson::suppPerson($tab);
+					ModelPerson::suppPerson($supp);
+
+					include("../view/client.php");
 		/*else{
 				echo "Veuillez remplir tous les champs."
 			}
