@@ -46,8 +46,6 @@ class ModelPerson {
             $res = $sql->execute();
             $sql->closeCursor();
 
-           // $sql->closeCursor();
-            //$conn=null;
    
             echo "<script type='text/javascript'>document.location.replace('../view/accueil.php');</script>";
 
@@ -142,15 +140,67 @@ class ModelPerson {
   public static function checkPseudo($pseudo){
         $conn = self::connexion();
 
-        $req = $conn->prepare('SELECT COUNT(*) FROM person 
-                                 WHERE pseudo = :pseudo');
+        //$req = $conn->prepare('SELECT COUNT(*) FROM person 
+         //                        WHERE pseudo = :pseudo');
 
-        $req->execute($pseudo);
+        //$req->execute($pseudo);
+        $req = $conn->query('SELECT COUNT(DISTINCT(*)) FROM person WHERE pseudo = :pseudo');
         return $req;
 
         $req->closeCursor();
 
   }
+
+  public static function connexionPerson($tab){
+    $conn = self::connexion();
+
+    $req = $conn->prepare('SELECT * FROM person 
+                                 WHERE pseudo = :pseudo');
+
+    $req->execute($tab); //Execution of the request
+    $data = $req->fetch(); //List all the result in array
+    return $data; //Return the array
+
+  }
+
+  public static function isAdmin(){
+    $conn = self::connexion();
+
+    $id = $_COOKIE['idPerson'];
+
+    $req = $conn->prepare('SELECT idAdmin FROM admin 
+                                 WHERE idAdmin = $id');
+    $req->execute();
+    $count = $req->rowCount(); 
+
+    if($count==1) {//Si est un administrateur
+        $bool = true;
+    }
+    else{
+        $bool =false;
+    }
+
+    return $bool; //Retourne le booléen
+  }
+
+  public static function deconnexion(){
+    setcookie('idPerson', null, time() - 15*24*3600, "/", null, false, true );
+    setcookie('pseudo', null, time() - 15*24*3600, "/", null, false, true);
+    setcookie('password', null, time() - 15*24*3600, "/", null, false, true);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 ?>

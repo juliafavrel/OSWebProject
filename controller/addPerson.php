@@ -30,10 +30,14 @@ require  '../model/ModelPerson.php';
 						            'phone' => $phone,
 						        );
 
-					$var = ModelPerson::checkPseudo($tab);
+					ModelPerson::addPerson($tab);
+
+					/*$var = ModelPerson::checkPseudo($tab);
 					echo $var;
 
-					/*if( $var == 0){
+					
+
+					if( $var == 0){
 
 						ModelPerson::addPerson($tab);
             			echo "<script type='text/javascript'>document.location.replace('../view/accueil.php');</script>";
@@ -44,16 +48,16 @@ require  '../model/ModelPerson.php';
 						echo "Pseudo déja existant. Choisissez en un autre.";
             			echo "<script type='text/javascript'>document.location.replace('../view/register.php');</script>";
 
-					}*/
-					ModelPerson::addPerson($tab);
+					}
+					//ModelPerson::addPerson($tab);
 
 				}
 				else{
 					echo "Les mots de passes ne sont pas identiques.";
 	            	echo "<script type='text/javascript'>document.location.replace('../view/register.php');</script>";
 
-				}
+				}*/
 			
-		}
+		}}
 
 ?>
