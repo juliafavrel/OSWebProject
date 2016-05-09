@@ -120,7 +120,8 @@ class ModelPerson {
             //$sql->bindParam(':idPerson', $tab['idPerson']);
 
             $res=$sql->execute($supp);
-            print_r($sql->errorInfo());
+            echo "<script type='text/javascript'>document.location.replace('../view/client.php');</script>";
+
     }
 
   public static function searchPerson($search) {
@@ -163,7 +164,7 @@ class ModelPerson {
 
   }
 
-  public static function isAdmin(){
+  /*public static function isAdmin(){
     $conn = self::connexion();
 
     $id = $_COOKIE['idPerson'];
@@ -189,7 +190,7 @@ class ModelPerson {
     setcookie('password', null, time() - 15*24*3600, "/", null, false, true);
   }
 
-
+*/
 
 
 

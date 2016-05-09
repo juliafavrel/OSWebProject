@@ -68,10 +68,23 @@
       </table>
       
     <p class="center">
-      <a href="ajoutevt.php"><button class="btn waves-effect waves-light pink darken-3 thin" type="submit" name="action">
+      <a href="ajoutevt.php">
+        <button class="btn waves-effect waves-light pink darken-3 thin" type="submit" name="action">
           Ajouter
-      </button>
-    </a>
+        </button>
+      </a>
+
+      <a href="modifierEvt.php">
+        <button class="btn waves-effect waves-light pink darken-3 thin" type="submit" name="action">
+          Modifier
+        </button>
+      </a>
+
+       <a href="suppEvt.php">
+        <button class="btn waves-effect waves-light pink darken-3 thin" type="submit" name="action">
+          Supprimer
+        </button>
+      </a>
     </p>
 
     </div>

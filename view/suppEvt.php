@@ -5,21 +5,21 @@
   <div class="container">
     <div class="section">
 
-    <h1>Suppression de client</h1>
+    <h1>Suppression d'un évènement</h1>
 
       <div class="row">
-        <form method="post" action="../controller/suppClient.php" class="col s12">
+        <form method="post" action="../controller/suppEvt.php" class="col s12">
           
 
             <div class="input-field col s12">
-              <input placeholder="N° de la personne à supprimer" id="idPerson" name="idPerson" type="text" class="validate">
-              <label for="idPerson">N°</label>
+              <input placeholder="N° de l'évènement à supprimer" id="idEvt" name="idEvt" type="text" class="validate">
+              <label for="idEvt">N°</label>
             </div>      
         
       </div>
 
     <p class="center">
-      <button class="btn waves-effect waves-light thin" type="submit" name="suppPerson">
+      <button class="btn waves-effect waves-light thin" type="submit" name="suppEvt">
         Supprimer
       </button>
     </p>

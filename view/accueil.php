@@ -3,32 +3,8 @@
 
 <body>
 <!--<?php //include("entete.php"); ?>-->
-  <nav class="white" role="navigation">
-    <div class="nav-wrapper container">
-     <ul class="right hide-on-med-and-down"> 
-        <li><a href="mesinscription.php">Mes inscriptions</a></li>
-        <li><a href="client.php">Clients</a></li>
-        <li><a href="evenements.php">Evènements</a></li> 
-        <li><a href="preinscr.php">Pré-inscriptions</a></li>
-        <li><a href="connexion.php">Connexion</a></li>
-        <li><a href="#">Déconnexion</a></li>
-      </ul>
-     
-      <a id="logo-container" href="accueil.php" class="brand-logo">Accueil</a>
-     
 
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="mesinscription.php">Mes inscriptions</a></li>
-        <li><a href="client.php">Clients</a></li>
-        <li><a href="evenements.php">Evènements</a></li> 
-        <li><a href="preinscr.php">Pré-inscriptions</a></li>
-        <li><a href="connexion.php">Connexion</a></li>
-        <li><a href="#">Déconnexion</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
-
+<?php include("entete.php"); ?>
 
 
 
@@ -79,11 +55,19 @@
                          print "<p><strong>" . "Prix : " . "</strong>" . $event["priceEvt"] . "€" . "</p>";
                          print "<p><strong>" . "Description : " . "</strong>" . $event["descEvt"] . "</p>";
                          print "<p><strong>" . "Places restantes : " . "</strong>" . $event["nbEvt"] . "</p>";
+
+                          print '<form method="get" action="../controller/inscriptionClient.php">';
+                          print '<input type="hidden" name="idEvent" value=$event["idEvt"] />';
+                           
+
+                            print "<button class=\"btn waves-effect waves-light pink darken-3\" type=\"submit\" name=\"action\">";
+                            print "S'inscrire";
+                            print "</button>";
+
+                          print '</form>';
                       
                         
-                        print "<button class=\"btn waves-effect waves-light pink darken-3\" type=\"submit\" name=\"action\">";
-                          print "S'inscrire";
-                        print "</button>";
+                        
                     print "</div>";
                   print "</div>";
                 print "</div>";

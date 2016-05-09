@@ -39,11 +39,13 @@
             if ($data['password'] == $password) //Si le mot de passe est le bon
             {
 
-                setcookie("idPerson",$data[0],time()+ 3600*24*15);
-                setcookie("pseudo",$data[1],time()+ 3600*24*15);
-                setcookie("password",$data[2],time()+ 3600*24*15);
+                setcookie("idPerson",$data[0],time()+ 3600*24*15,"/projetBapt/");
+                setcookie("pseudo",$data[1],time()+ 3600*24*15,"/projetBapt/");
+                setcookie("password",$data[2],time()+ 3600*24*15,"/projetBapt/");
 
-             
+                //echo $_COOKIE["idPerson"];
+                //echo $_COOKIE["pseudo"];
+                //echo $_COOKIE["password"];
 	           	echo "<script type='text/javascript'>document.location.replace('../view/accueil.php');</script>";
             
 

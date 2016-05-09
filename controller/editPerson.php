@@ -9,11 +9,11 @@ require_once  '../model/ModelPerson.php';
 			isset($_POST['mail']) AND 
 			isset($_POST['phone']) ) 
 		{*/
-				$idPerson = $_POST['id'];
-				$firstName = $_POST['firstName'];
-				$lastName = $_POST['lastName'];
-				$mail = $_POST['mail'];
-				$phone = $_POST['phone']; 
+				$idPerson = htmlspecialchars($_POST['id']);
+				$firstName = htmlspecialchars($_POST['firstName']);
+				$lastName = htmlspecialchars($_POST['lastName']);
+				$mail = htmlspecialchars($_POST['mail']);
+				$phone = htmlspecialchars($_POST['phone']); 
 
 				$tab=array(
 					            'idPerson' => $idPerson,

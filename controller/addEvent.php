@@ -3,23 +3,31 @@
 //require_once  '../model/Model.php';
 require_once  '../model/ModelEvent.php';
 
-    $nameEvt = $_POST['nameEvt'];
-	$placeEvt = $_POST['placeEvt'];
-	$dateEvt = $_POST['dateEvt'];
-	$priceEvt = $_POST['priceEvt'];
-	$descEvt = $_POST['descEvt'];
-	$nbEvt = $_POST['nbEvt'];  
 
-	$tab=array(
-		            'nameEvt' => $nameEvt,
-		            'placeEvt' => $placeEvt,
-					'dateEvt' => $dateEvt,
-		            'priceEvt' => $priceEvt,
-		            'descEvt' => $descEvt,
-		            'nbEvt' => $nbEvt,
-		        );
-	
-	ModelEvent::addEvent($tab);
+			if( ($_POST['idEvt'] == '') OR ($_POST['nameEvt'] == '')  OR ($_POST['placeEvt'] == '') OR ($_POST['dateEvt'] == '' ) OR ($_POST['priceEvt'] == '') OR ($_POST['descEvt'] == '') OR ($_POST['nbEvt'] == '')) {
+				echo 'Veuillez remplir tous les champs.
+				<p>Cliquez <a href="../view/ajoutevt.php">ici</a> pour recommencer.</p>';
+				
+			}
+			else{
+			    $nameEvt = $_POST['nameEvt'];
+				$placeEvt = $_POST['placeEvt'];
+				$dateEvt = $_POST['dateEvt'];
+				$priceEvt = $_POST['priceEvt'];
+				$descEvt = $_POST['descEvt'];
+				$nbEvt = $_POST['nbEvt'];  
+
+				$tab=array(
+					            'nameEvt' => $nameEvt,
+					            'placeEvt' => $placeEvt,
+								'dateEvt' => $dateEvt,
+					            'priceEvt' => $priceEvt,
+					            'descEvt' => $descEvt,
+					            'nbEvt' => $nbEvt,
+					        );
+				
+				ModelEvent::addEvent($tab);
+			}
 
 
 

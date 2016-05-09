@@ -18,7 +18,7 @@
               <th data-field="nomevnt">Evenement</th>
               <th data-field="lieuevt">Lieu</th>
               <th data-field="dateevt">Date</th>
-              <th data-field="resad">Date Reservation</th>
+              
           </tr>
         </thead>
 
@@ -26,18 +26,17 @@
           
             <?php 
 
-            require_once  '../model/ModelPreRegistr.php';
-            $preregistr = ModelPreRegistr::getAllPreRegistr();
+            require_once  '../model/ModelRegistr.php';
+            $registr = ModelRegistr::getAllRegistr();
 
-            foreach($preregistr as $line) {
+            foreach($registr as $line) {
                print "<tr> <td>" .  $line["idClient"] . "</td>";
                print "<td>" .  $line["idEvent"] . "</td>";
                print "<td>" .  $line["lastName"] . "</td>";
                print "<td>" .  $line["firstName"] . "</td>";
                print "<td>" .  $line["nameEvt"] . "</td>";
                print "<td>" .  $line["placeEvt"] . "</td>";
-               print "<td>" .  $line["dateEvt"] . "</td>";
-               print "<td>" .  $line["dateRegistration"] . "</td> </tr>";
+               print "<td>" .  $line["dateEvt"] . "</td> </tr>";
              } 
                 
           ?>
@@ -45,13 +44,8 @@
         </tbody>
       </table>
 
-    <p class="center">
-      <a href="validerPreReg.php">
-        <button class="btn waves-effect waves-light pink darken-3 thin" type="submit" name="action">
-          Valider
-        </button>
-      </a>
 
+    <p class="center">
        <a href="suppPreReg.php">
         <button class="btn waves-effect waves-light pink darken-3 thin" type="submit" name="action">
           Supprimer

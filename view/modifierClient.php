@@ -16,7 +16,7 @@
               <label for="id">N°</label>
             </div>
 
-            <div class="input-field col s12">
+             <div class="input-field col s12">
               <input  id="firstName" name="firstName" type="text" class="validate">
               <label for="firstName">Prénom</label>
             </div>
@@ -26,12 +26,12 @@
               <label for="lastName">Nom</label>
             </div>
 
-    	      <div class="input-field col s12">
-    	          <input id="mail" name="mail" type="email" class="validate">
-    	          <label for="mail">Email</label>
-    	    </div>
+            <div class="input-field col s12">
+                <input id="mail" name="mail" type="email" class="validate">
+                <label for="mail">Email</label>
+          </div>
 
-    	    <div class="input-field col s12">
+          <div class="input-field col s12">
              <input id="phone" name="phone" type="text" class="validate">
               <label for="phone">Telephone</label>
             </div>
@@ -40,7 +40,7 @@
       </div>
 
     <p class="center">
-      <button class="btn waves-effect waves-light thin" type="submit" name="editPerson">
+      <button class="btn waves-effect waves-light thin" type="submit" name="editEvt">
         Modifier
       </button>
     </p>
