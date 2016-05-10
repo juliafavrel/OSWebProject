@@ -1,9 +1,9 @@
+
+
 <?php include("head.php"); ?>
 
 
 <body>
-<!--<?php //include("entete.php"); ?>-->
-
 <?php include("entete.php"); ?>
 
 
@@ -44,6 +44,8 @@
 
             foreach($events as $event) {
 
+              $id=$event["idEvt"];
+
                print "<div class=\"icon-block\">";
                   print "<div class=\"card\">";                   
                       print "<div class=\"card-content\">";
@@ -57,7 +59,7 @@
                          print "<p><strong>" . "Places restantes : " . "</strong>" . $event["nbEvt"] . "</p>";
 
                           print '<form method="get" action="../controller/inscriptionClient.php">';
-                          print '<input type="hidden" name="idEvent" value=$event["idEvt"] />';
+                          print '<input type="hidden" name="idEvent" value=$id />';
                            
 
                             print "<button class=\"btn waves-effect waves-light pink darken-3\" type=\"submit\" name=\"action\">";

@@ -164,13 +164,11 @@ class ModelPerson {
 
   }
 
-  /*public static function isAdmin(){
+  public static function isAdmin($cookie){
     $conn = self::connexion();
 
-    $id = $_COOKIE['idPerson'];
-
     $req = $conn->prepare('SELECT idAdmin FROM admin 
-                                 WHERE idAdmin = $id');
+                                 WHERE idAdmin = $cookie');
     $req->execute();
     $count = $req->rowCount(); 
 
@@ -190,7 +188,7 @@ class ModelPerson {
     setcookie('password', null, time() - 15*24*3600, "/", null, false, true);
   }
 
-*/
+
 
 
 

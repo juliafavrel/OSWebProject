@@ -1,5 +1,4 @@
 <?php include("head.php"); ?>
-
 <?php include("entete.php"); ?>
 
   <div class="container">

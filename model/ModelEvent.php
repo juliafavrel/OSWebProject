@@ -58,13 +58,14 @@ class ModelEvent{
             $conn = self::connexion();
             //Prepare the selection
 
-            $req = $conn->prepare('SELECT * FROM event 
+            $req = $conn->prepare('SELECT * FROM evt 
                                  WHERE nameEvt LIKE "%":search"%" 
                                  OR descEvt LIKE "%":search"%"'); 
 
             $req->execute($search); //Execution of the request
             $data = $req->fetchAll(); //List all the result in array
             return $data; //Return the array
+          
         }
 
 
