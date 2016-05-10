@@ -1,5 +1,5 @@
 
-<?php
+<?php 
 
 class ModelPerson {
 
@@ -162,14 +162,20 @@ class ModelPerson {
     $data = $req->fetch(); //List all the result in array
     return $data; //Return the array
 
+    $req->closeCursor();
+
   }
 
   public static function isAdmin($cookie){
     $conn = self::connexion();
 
+    $tab=array(
+        'id' => $cookie,
+        );
+
     $req = $conn->prepare('SELECT idAdmin FROM admin 
-                                 WHERE idAdmin = $cookie');
-    $req->execute();
+                                 WHERE idAdmin = :id');
+    $req->execute($tab);
     $count = $req->rowCount(); 
 
     if($count==1) {//Si est un administrateur
@@ -182,11 +188,6 @@ class ModelPerson {
     return $bool; //Retourne le booléen
   }
 
-  public static function deconnexion(){
-    setcookie('idPerson', null, time() - 15*24*3600, "/", null, false, true );
-    setcookie('pseudo', null, time() - 15*24*3600, "/", null, false, true);
-    setcookie('password', null, time() - 15*24*3600, "/", null, false, true);
-  }
 
 
 
