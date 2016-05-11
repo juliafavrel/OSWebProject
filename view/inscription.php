@@ -3,7 +3,7 @@
 <?php include("entete.php"); ?>
 
 
-<!--Barre de recherche-->
+<!--Barre de recherche
     <form method="get" action="../view/searchInscription.php" accept-charset="utf-8" class="col s12" >
       <div class="row">
         <div class="input-field col s3 offset-s9">
@@ -15,7 +15,7 @@
 
         </div>
       </div>
-    </form>
+    </form>-->
 
 <!--Tableau des inscriptions-->
   <div class="container">

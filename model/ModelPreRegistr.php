@@ -20,24 +20,52 @@ class ModelPreRegistr {
 
     }
 
+    //Vérifie si le participant est déja inscrit
+    public static function checkInscription($event){
+        $conn = self::connexion();
+
+        $tab=array(
+                'idClient' => $_COOKIE['idPerson'],
+                'idEvent' => $event,
+            );
+
+        $req = $conn->prepare('SELECT * 
+                            FROM preRegistr 
+                            WHERE idClient = :idClient
+                            AND idEvent = :idEvent');
+
+        $req->execute($tab);
+        $count = $req->rowCount();
+        $req->closeCursor();
+
+        //Si il n'y a pas de retour de la requete, le membre n'est pas encore inscrit
+        if($count==0) {
+            $bool = true;
+        }
+        else{
+            $bool =false;
+        }
+        return $bool;
+    } 
+
     //Créer un préInscription avec que le client ait cliqué sur le bouton S'inscrire
 	public static function preInscription($tab){
 
 		$conn = self::connexion();
 
-			$date=date("d-m-Y");
+			$date=date("Y-m-d");
 
 		    $sql = $conn->prepare("INSERT INTO preRegistr(idClient, idEvent, dateRegistration)
             VALUES (:idClient, :idEvent, $date)");
 
-            //$sql->bindParam(':idClient', $tab['idClient']);
-            //$sql->bindParam(':idEvent', $tab['idEvent']);
-          
-            $res = $sql->execute($tab);
+            $sql->bindParam(':idClient', $tab['idClient']);
+            $sql->bindParam(':idEvent', $tab['idEvent']);
+
+            $res = $sql->execute();
             $sql->closeCursor();
 
    
-            echo "<script type='text/javascript'>document.location.replace('../view/accueil.php');</script>";
+            echo "<script type='text/javascript'>document.location.replace('../view/mesinscription.php');</script>";
 
 	}
 

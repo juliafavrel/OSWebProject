@@ -59,23 +59,23 @@ class ModelRegistr {
 
     }
 
-      public static function searchInscription($search) {
+      /*public static function searchInscription($search) {
 
             $conn = self::connexion();
             //Prepare the selection
 
             $req = $conn->prepare(' SELECT DISTINCT R.idClient, R.idEvent, P.firstName, P.lastName, E.nameEvt, E.placeEvt, E.dateEvt 
                                     FROM person P, evt E, registr R 
-                                    WHERE R.idClient = P.idPerson
-                                    AND R.idEvent = E.idEvt
-                                    AND P.firstName LIKE "%":search"%" 
-                                    OR P.lastName LIKE "%":search"%"
-                                    OR R.idEvent=:search'); 
+                                    WHERE idClient = idPerson
+                                    AND idEvent = idEvt
+                                    AND firstName LIKE "%":search"%" 
+                                    OR lastName LIKE "%":search"%"
+                                    OR nameEvt="%":search"%"'); 
 
             $req->execute($search); //Execution of the request
             $data = $req->fetchAll(); //List all the result in array
             return $data; //Return the array
-      }
+      }*/
 
 
       public static function suppInscription($supp){

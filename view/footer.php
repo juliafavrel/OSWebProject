@@ -22,7 +22,7 @@
     </div>
     <div class="footer-copyright">
       <div class="container">
-      Copyright © 2015 Julia Favrel
+      Copyright © Julia Favrel 2016
       </div>
     </div>
   </footer>
