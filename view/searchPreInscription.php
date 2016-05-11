@@ -3,25 +3,11 @@
 <?php include("entete.php"); ?>
 
 
-<!--Barre de recherche-->
-    <form method="get" action="../view/searchInscription.php" accept-charset="utf-8" class="col s12" >
-      <div class="row">
-        <div class="input-field col s3 offset-s9">
-
-         <i class="material-icons prefix">search</i>
-
-          <input id="search" name="search" type="text" class="validate">
-          <label for="search">Rechercher</label>
-
-        </div>
-      </div>
-    </form>
-
 <!--Tableau des inscriptions-->
   <div class="container">
     <div class="section">
 
-      <h2>Inscriptions validées</h2>
+      <h2> Recherche liée à "<?php echo $_GET['search'] ?> "</h2>
 
        <table class="bordered">
         <thead>
@@ -41,9 +27,13 @@
           
             <?php 
 
-            require_once  '../model/ModelRegistr.php';
+            require_once  '../model/ModelPreRegistr.php';
+
+            $tab=array(
+                'search' => $_GET['search'],
+            );
             
-            $registr = ModelRegistr::getAllRegistr();
+            $registr = ModelPreRegistr::searchPreInscription($tab);
 
             foreach($registr as $line) {
                print "<tr> <td>" .  $line["idClient"] . "</td>";

@@ -4,18 +4,18 @@
 require_once  '../model/ModelEvent.php';
 
 
-			if( ($_POST['idEvt'] == '') OR ($_POST['nameEvt'] == '')  OR ($_POST['placeEvt'] == '') OR ($_POST['dateEvt'] == '' ) OR ($_POST['priceEvt'] == '') OR ($_POST['descEvt'] == '') OR ($_POST['nbEvt'] == '')) {
+			if( ($_POST['nameEvt'] == '')  OR ($_POST['placeEvt'] == '') OR ($_POST['dateEvt'] == '' ) OR ($_POST['priceEvt'] == '') OR ($_POST['descEvt'] == '') OR ($_POST['nbEvt'] == '')) {
 				echo 'Veuillez remplir tous les champs.
 				<p>Cliquez <a href="../view/ajoutevt.php">ici</a> pour recommencer.</p>';
 				
 			}
 			else{
-			    $nameEvt = $_POST['nameEvt'];
-				$placeEvt = $_POST['placeEvt'];
-				$dateEvt = $_POST['dateEvt'];
-				$priceEvt = $_POST['priceEvt'];
-				$descEvt = $_POST['descEvt'];
-				$nbEvt = $_POST['nbEvt'];  
+			    $nameEvt = htmlspecialchars($_POST['nameEvt']);
+				$placeEvt = htmlspecialchars($_POST['placeEvt']);
+				$dateEvt = htmlspecialchars($_POST['dateEvt']);
+				$priceEvt = htmlspecialchars($_POST['priceEvt']);
+				$descEvt = htmlspecialchars($_POST['descEvt']);
+				$nbEvt = htmlspecialchars($_POST['nbEvt']);  
 
 				$tab=array(
 					            'nameEvt' => $nameEvt,

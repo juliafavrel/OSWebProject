@@ -46,11 +46,11 @@
 
               $id=$event["idEvt"];
 
-               print "<div class=\"icon-block\">";
-                  print "<div class=\"card\">";                   
-                      print "<div class=\"card-content\">";
+               print '<div class="icon-block">
+                  <div class="card center">                  
+                       <div class="card-content"">';
 
-                        print "<span class=\"card-title  grey-text text-darken-4\">" .$event["nameEvt"] . "</span>";
+                       print "<span class=\"card-title  grey-text text-darken-4\">" .$event["nameEvt"] . "</span>";
 
                          print "<p><strong>" . "Lieu : " . "</strong>" . $event["placeEvt"] . "</p>";
                          print "<p><strong>" . "Date : " . "</strong>" . $event["dateEvt"] . "</p>";
@@ -58,13 +58,14 @@
                          print "<p><strong>" . "Description : " . "</strong>" . $event["descEvt"] . "</p>";
                          print "<p><strong>" . "Places restantes : " . "</strong>" . $event["nbEvt"] . "</p>";
 
-                          print '<form method="get" action="../controller/inscriptionClient.php">';
-                          print '<input type="hidden" name="idEvent" value=$id />';
+                          print '<form method="get" action="../controller/inscriptionClient.php">
+                                <input type="hidden" name="idEvent" value="'.$id.'" />';
                            
-
-                            print "<button class=\"btn waves-effect waves-light pink darken-3\" type=\"submit\" name=\"action\">";
-                            print "S'inscrire";
-                            print "</button>";
+                          if (isset($_COOKIE['idPerson'])){
+                            print '<button class="btn waves-effect waves-light pink darken-3" type="submit" name="action">
+                                S\'inscrire
+                                </button>';
+                          }
 
                           print '</form>';
                       

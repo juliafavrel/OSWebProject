@@ -5,16 +5,16 @@
   <div class="container">
     <div class="section" class="bordered">
 
-      <h1> Mes inscriptions </h1>
+      <h3 > Mes inscriptions </h3>
 
        <table>
         <thead>
           <tr>
-              <th data-field="id">Evenement</th>
-              <th data-field="lieu">Lieu</th>
-              <th data-field="date">Date</th>
-              <th data-field="prix">Prix</th>
-              <th data-field="placerest">Description</th>
+              <th data-field="nameEvt">Evenement</th>
+              <th data-field="placeEvt">Lieu</th>
+              <th data-field="dateEvt">Date</th>
+              <th data-field="priceEvt">Prix</th>
+              <th data-field="descEvt">Description</th>
           </tr>
         </thead>
 
@@ -34,28 +34,30 @@
                print "<td>" .  $line["placeEvt"] . "</td>";
                print "<td>" .  $line["dateEvt"] . "</td>";
                print "<td>" .  $line["priceEvt"] . "</td>";
-               print "<td>" .  $line["nbEvt"] . "</td> </tr>";
+               print "<td>" .  $line["descEvt"] . "</td> </tr>";
              } 
                 
           ?>
           
         </tbody>
       </table>
+</div>
+
+<p></p>
 
 
+<div class="section" class="bordered">
 
-
-
-       <h1> Mes inscriptions en attente de validation </h1>
+       <h3> Mes inscriptions en attente de validation </h3>
 
        <table>
         <thead>
           <tr>
-              <th data-field="id">Evenement</th>
-              <th data-field="lieu">Lieu</th>
-              <th data-field="date">Date</th>
-              <th data-field="prix">Prix</th>
-              <th data-field="placerest">Description</th>
+              <th data-field="idEvt">Evenement</th>
+              <th data-field="placeEvt">Lieu</th>
+              <th data-field="dateEvt">Date</th>
+              <th data-field="priceEvt">Prix</th>
+              <th data-field="descEvt">Description</th>
           </tr>
         </thead>
 
@@ -74,7 +76,7 @@
                print "<td>" .  $line["placeEvt"] . "</td>";
                print "<td>" .  $line["dateEvt"] . "</td>";
                print "<td>" .  $line["priceEvt"] . "</td>";
-               print "<td>" .  $line["nbEvt"] . "</td> </tr>";
+               print "<td>" .  $line["descEvt"] . "</td> </tr>";
              } 
                 
           ?>

@@ -18,8 +18,7 @@
                           <th data-field="prenomcli">Prénom</th>
                           <th data-field="emailcli">Email</th>
                           <th data-field="telcli">Téléphone</th>
-                          <!--<th data-field="modif"></th>
-                          <th data-field="suppr"></th>-->
+
                       </tr>
                     </thead>
 
@@ -43,6 +42,12 @@
                         ?>
                   </tbody>
             </table>
+
+            <p class="center">
+             <a href="modifierClient.php" class="btn-floating waves-effect waves-light pink darken-3"><i class="material-icons">mode_edit</i></a>
+             <a href="suppClient.php" class="btn-floating btn-small waves-effect waves-light pink darken-3"><i class="material-icons">delete</i></a>
+            </p>
+
       </div>
 </div>
 

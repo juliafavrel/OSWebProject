@@ -2,11 +2,28 @@
 
 <?php include("entete.php"); ?>
 
-<?php include("rechercher.php"); ?>
+<!--Barre de recherche-->
+    <form method="get" action="../view/searchPreInscription.php" accept-charset="utf-8" class="col s12" >
+      <div class="row">
+        <div class="input-field col s3 offset-s9">
+
+         <i class="material-icons prefix">search</i>
+
+          <input id="search" name="search" type="text" class="validate">
+          <label for="search">Rechercher</label>
+
+        </div>
+      </div>
+    </form>
+
+
+
 
 
   <div class="container">
     <div class="section">
+
+      <h2>Demandes d'inscription</h2>
 
        <table class="bordered">
         <thead>
@@ -52,7 +69,7 @@
         </button>
       </a>
 
-       <a href="suppPreReg.php">
+       <a href="suppPreInscr.php">
         <button class="btn waves-effect waves-light pink darken-3 thin" type="submit" name="action">
           Supprimer
         </button>
@@ -71,8 +88,8 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
+  <script src="../assets/js/materialize.js"></script>
+  <script src="../assets/js/init.js"></script>
 
   </body>
 </html>

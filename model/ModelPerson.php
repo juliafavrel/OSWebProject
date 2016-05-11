@@ -65,7 +65,8 @@ class ModelPerson {
 
             $conn = self::connexion();
 
-            $sql = "SELECT * FROM person";
+            $sql = "SELECT * FROM person
+                    ORDER BY lastName";
             $users=$conn->query($sql);
             $result = $users->fetchAll();
             return $result;
@@ -187,11 +188,6 @@ class ModelPerson {
 
     return $bool; //Retourne le booléen
   }
-
-
-
-
-
 
 
 

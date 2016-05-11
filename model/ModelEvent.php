@@ -47,7 +47,8 @@ class ModelEvent{
 
             $conn = self::connexion();
 
-            $sql = "SELECT * FROM evt";
+            $sql = "SELECT * FROM evt
+                    ORDER BY dateEvt";
             $users=$conn->query($sql);
             $result = $users->fetchAll();
             return $result;
@@ -60,7 +61,7 @@ class ModelEvent{
 
             $req = $conn->prepare('SELECT * FROM evt 
                                  WHERE nameEvt LIKE "%":search"%" 
-                                 OR descEvt LIKE "%":search"%"'); 
+                                 OR placeEvt LIKE "%":search"%"'); 
 
             $req->execute($search); //Execution of the request
             $data = $req->fetchAll(); //List all the result in array

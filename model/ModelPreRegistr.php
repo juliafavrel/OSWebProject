@@ -30,10 +30,10 @@ class ModelPreRegistr {
 		    $sql = $conn->prepare("INSERT INTO preRegistr(idClient, idEvent, dateRegistration)
             VALUES (:idClient, :idEvent, $date)");
 
-            $sql->bindParam(':idClient', $tab['idClient']);
-            $sql->bindParam(':idEvent', $tab['idEvent']);
+            //$sql->bindParam(':idClient', $tab['idClient']);
+            //$sql->bindParam(':idEvent', $tab['idEvent']);
           
-            $res = $sql->execute();
+            $res = $sql->execute($tab);
             $sql->closeCursor();
 
    
@@ -49,7 +49,8 @@ class ModelPreRegistr {
             $sql = "SELECT idClient, idEvent, firstName, lastName, nameEvt, placeEvt, dateEvt, dateRegistration 
             		FROM person , evt , preRegistr 
             		WHERE idClient=idPerson
-            		AND idEvent=idEvt";
+            		AND idEvent=idEvt
+                    ORDER BY dateRegistration";
 
             $prereg=$conn->query($sql);
             $result = $prereg->fetchAll();
@@ -74,6 +75,7 @@ class ModelPreRegistr {
         //$sql->bindParam(':idEvent', $tab['idEvent']);
         
         $res=$sql->execute($tab);
+        $sql->closeCursor();
 
         echo "<script type='text/javascript'>document.location.replace('../view/inscription.php');</script>";
 
@@ -92,9 +94,43 @@ class ModelPreRegistr {
     $data = $req->fetchAll(); //List all the result in array
     return $data; //Return the array
  
-    $sql->closeCursor();
+    $req->closeCursor();
 
     }
+
+      public static function suppPreInscr($supp){
+
+            $conn = self::connexion();
+
+            $sql = $conn->prepare('DELETE FROM preRegistr 
+                    WHERE idClient = :idClient
+                    AND idEvent = :idEvent;');
+
+            $res=$sql->execute($supp);
+            $sql->closeCursor();
+            echo "<script type='text/javascript'>document.location.replace('../view/preinscr.php');</script>";
+
+    }
+
+    public static function searchPreInscription($search) {
+
+            $conn = self::connexion();
+            //Prepare the selection
+
+            $req = $conn->prepare(' SELECT DISTINCT idClient, idEvent, firstName, lastName, nameEvt, placeEvt, dateEvt 
+                                    FROM person , evt , registr 
+                                    WHERE idClient=idPerson
+                                    AND idEvent=idEvt
+                                    AND firstName LIKE "%":search"%" 
+                                    OR lastName LIKE "%":search"%"
+                                    OR nameEvt LIKE "%":search"%"
+                                    OR placeEvt LIKE "%":search"%"'); 
+
+            $req->execute($search); //Execution of the request
+            $data = $req->fetchAll(); //List all the result in array
+            return $data; //Return the array
+      }
+
 
 
 

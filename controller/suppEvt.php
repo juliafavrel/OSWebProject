@@ -12,7 +12,7 @@ require_once  '../model/ModelEvent.php';
 				$idPerson = $_POST['idEvt'];
 
 				$supp=array(
-					            'idEvt' => $edEvt,
+					            'idEvt' => $idEvt,
 					        );
 		//}
 					ModelEvent::suppEvt($supp);

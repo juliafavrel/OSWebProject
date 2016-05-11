@@ -5,7 +5,6 @@
                   'idEvent' => $_GET['idEvent'],
                   'idClient' => $_COOKIE['idPerson'],
               );
-
     $datas = ModelPreRegistr::preInscription($tab);
 
 ?>
