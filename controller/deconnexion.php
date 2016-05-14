@@ -1,6 +1,6 @@
 <?php
 	
-    setcookie('idPerson', '', -1 , "/", "club-orgesucreeserv.rhcloud.com", false, true);
+    setcookie('idPerson', '', -1 , "/projetBapt/",null);
 
     header('Location: ../view/accueil.php');
 
