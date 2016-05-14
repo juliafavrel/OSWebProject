@@ -1,9 +1,7 @@
 <?php
 	
-    setcookie('idPerson', '', -1 , "/projetBapt/",null);
-    setcookie('pseudo', '', -1 , "/projetBapt/",null);
-    setcookie('password', '', -1 , "/projetBapt/",null);
+    setcookie('idPerson', '', -1 , "/", "club-orgesucreeserv.rhcloud.com", false, true);
 
-    header('Location: http://localhost:8888/projetBapt/view/accueil.php');
+    header('Location: ../view/accueil.php');
 
 ?>

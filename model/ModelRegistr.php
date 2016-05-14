@@ -92,6 +92,50 @@ class ModelRegistr {
 
     }
 
+        public static function checkReg($tab){
+        $conn = self::connexion();
+
+        $req = $conn->prepare('SELECT * 
+                            FROM registr 
+                            WHERE idClient = :idClient
+                            AND idEvent = :idEvent');
+
+        $req->bindParam(':idClient', $tab['idClient']);
+        $req->bindParam(':idEvent', $tab['idEvent']);
+
+        $req->execute();
+        $count = $req->rowCount();
+        
+
+        //Si il n'y a pas de retour de la requete, le membre n'est pas encore inscrit
+        if($count==0) {
+            $bool = true;
+        }
+        else{
+            $bool =false;
+        }
+        return $bool;
+        $req->closeCursor();
+    } 
+
+    public static function getParticipants($tab){
+        $conn = self::connexion();
+
+
+        $req = $conn->prepare( "SELECT firstName, lastName, birthDate, mail, phone 
+                    FROM person , registr 
+                    WHERE idEvent= :idEvent
+                    AND idClient=idPerson");
+
+        $req->execute($tab); //Execution of the request
+        $data = $req->fetchAll(); //List all the result in array
+        return $data; //Return the array
+     
+        $sql->closeCursor();
+
+    }
+
+
 
 
 

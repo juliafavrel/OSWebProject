@@ -24,7 +24,7 @@
         <div class="card-panel lighten-2">
           <span >
 				<p>
-					<label for="pseudo">Pseudo :</label><input name="pseudo" type="text" id="pseudo" class="validate" />
+					<label for="idPerson">Pseudo :</label><input name="idPerson" type="text" id="idPerson" class="validate" />
 						<br />
 				<label for="password">Mot de Passe :</label><input type="password" name="password" id="password" class="validate" />
 				</p>

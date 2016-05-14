@@ -5,10 +5,10 @@
 class ModelEvent{
 
     public static function connexion(){
-    $servername = "localhost";
-    $username = "juju";
-    $pass = "salut";
-    $dbname = "club";
+        $servername = "localhost";
+        $username = "juju";
+        $pass = "salut";
+        $dbname = "club";
 
         try{
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $pass);

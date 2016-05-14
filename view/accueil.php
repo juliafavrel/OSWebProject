@@ -14,7 +14,7 @@
     <div class="section no-pad-bot">
       <div class="container">
         <br><br>
-        <h1 class="header center pink-text text-darken-3">L'orge sucrée</h1>
+        <h1 class="header center pink-text text-darken-3">L'orge sucrée </h1>
         <div class="row center">
           <h5 class="header col s12 ">Site de réservation d'activité et d'évènements liés au club.</h5>
         </div>
@@ -31,9 +31,6 @@
   <div class="container">
     <div class="section">
 
-      <!--   Icon Section   -->
-
-      
 
 
     <?php 
@@ -45,10 +42,11 @@
             foreach($events as $event) {
 
               $id=$event["idEvt"];
+              $cookie = $_COOKIE['idPerson'];
 
                print '<div class="icon-block">
                   <div class="card center">                  
-                       <div class="card-content"">';
+                       <div class="card-content">';
 
                        print "<span class=\"card-title  grey-text text-darken-4\">" .$event["nameEvt"] . "</span>";
 
@@ -58,10 +56,13 @@
                          print "<p><strong>" . "Description : " . "</strong>" . $event["descEvt"] . "</p>";
                          print "<p><strong>" . "Places restantes : " . "</strong>" . $event["nbEvt"] . "</p>";
 
-                          print '<form method="get" action="../controller/inscriptionClient.php">
+                          print '<form method="post" action="../controller/inscriptionClient.php">
                                 <input type="hidden" name="idEvent" value="'.$id.'" />';
                            
-                          if (isset($_COOKIE['idPerson'])){
+                          if (isset($cookie)){
+                           
+                               print ' <input type="hidden" name="idClient" value="'.$cookie.'" />';
+
                             print '<button class="btn waves-effect waves-light pink darken-3" type="submit" name="action">
                                 S\'inscrire
                                 </button>';

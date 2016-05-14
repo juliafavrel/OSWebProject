@@ -13,9 +13,10 @@
             <table class="bordered">
                     <thead>
                       <tr>
-                          <th data-field="id">N°</th>
+                          
                           <th data-field="nomcli">Nom</th>
                           <th data-field="prenomcli">Prénom</th>
+                          <th data-field="dateNaiss">Date de Naissance</th>
                           <th data-field="emailcli">Email</th>
                           <th data-field="telcli">Téléphone</th>
 
@@ -33,12 +34,19 @@
 
                         $datas = ModelPerson::searchPerson($tab);
                         foreach($datas as $data) {
-                           print "<tr> <td>" .  $data["idPerson"] . "</td>";
-                           print "<td>" .  $data["lastName"] . "</td>";
+
+                          $admin=ModelPerson::isAdmin($data["idPerson"]);
+                          if ($admin){
+
+                          }
+                          else{
+                           print "<tr> <td>" .  $data["lastName"] . "</td>";
                            print "<td>" .  $data["firstName"] . "</td>";
+                           print "<td>" .  $data["birthDate"] . "</td>";
                            print "<td>" .  $data["mail"] . "</td>";
                            print "<td>" .  $data["phone"] . "</td> </tr>";
                           }
+                        }
                         ?>
                   </tbody>
             </table>

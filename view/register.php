@@ -8,11 +8,11 @@
 
       <div class="row">
         <form method="post" action="../controller/addPerson.php" class="col s12" accept-charset="utf-8">
-          <!--<input type="hidden" value="addPerson" name="action" >-->
+          
         
             <div class="input-field col s12">
-              <input placeholder="prenom.nom" id="pseudo" name="pseudo" type="text" class="validate">
-              <label for="pseudo">Pseudo</label>
+              <input placeholder="prenom.nom" id="idPerson" name="idPerson" type="text" class="validate">
+              <label for="idPerson">Pseudo</label>
             </div>
 
            <div class="input-field col s12">

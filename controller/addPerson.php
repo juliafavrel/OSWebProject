@@ -2,7 +2,7 @@
 require  '../model/ModelPerson.php';
 
 		//Vérification des champs obligatoires
-		if( ($_POST['pseudo'] == '') OR ($_POST['firstName'] == '')  OR ($_POST['lastName'] == '') OR ($_POST['password'] == '' ) OR ($_POST['password1'] == '')){
+		if( ($_POST['idPerson'] == '') OR ($_POST['firstName'] == '')  OR ($_POST['lastName'] == '') OR ($_POST['password'] == '' ) OR ($_POST['password1'] == '')){
 			echo '<p class"center">Veuillez remplir tous les champs.
 				<br>
 				Cliquez <a href="../view/register.php">ici</a> pour recommencer.</p>';
@@ -11,7 +11,7 @@ require  '../model/ModelPerson.php';
 			//Vérifictaion : les mots de passes sont-ils identiques ?
 			if($_POST['password'] == $_POST['password1']){
 
-				    $pseudo = htmlspecialchars($_POST['pseudo']);
+				    $idPerson = sha1($_POST['idPerson']);
 					$password = sha1($_POST['password']);
 					$firstName = htmlspecialchars($_POST['firstName']);
 					$lastName = htmlspecialchars($_POST['lastName']);
@@ -20,7 +20,7 @@ require  '../model/ModelPerson.php';
 					$phone = htmlspecialchars($_POST['phone']);  
 
 					$tab=array(
-						            'pseudo' => $pseudo,
+						            'idPerson' => $idPerson,
 						            'password' => $password,							
 									'firstName' => $firstName,				           
 						            'lastName' => $lastName,
@@ -30,7 +30,7 @@ require  '../model/ModelPerson.php';
 						        );
 
 					//Vérification : le pseudo est-il déja utilisé ?
-					$ok = ModelPerson::checkPseudo($_POST['pseudo']);
+					$ok = ModelPerson::checkPseudo($tab);
 					
 					if($ok){
 						ModelPerson::addPerson($tab);

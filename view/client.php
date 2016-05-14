@@ -1,5 +1,4 @@
-
- <?php include("head.php"); ?>
+<?php include("head.php"); ?>
 
 <?php include("entete.php"); ?>
 
@@ -30,13 +29,12 @@
        <table class="bordered">
         <thead>
           <tr>
-              <th data-field="id">N°</th>
               <th data-field="nomcli">Nom</th>
               <th data-field="prenomcli">Prénom</th>
               <th data-field="emailcli">Email</th>
               <th data-field="telcli">Téléphone</th>
-              <!--<th data-field="modif"></th>
-              <th data-field="suppr"></th>-->
+              <th data-field="modif"></th>
+              <th data-field="suppr"></th>
           </tr>
         </thead>
 
@@ -44,27 +42,48 @@
             
           <?php 
 
+
             require_once  '../model/ModelPerson.php';
             $persons = ModelPerson::getAllPerson();
-
             foreach($persons as $person) {
-               print "<tr> <td>" .  $person["idPerson"] . "</td>";
+
+              $admin=ModelPerson::isAdmin($person["idPerson"]);
+              if ($admin){
+
+              }
+              else{
+               print "<tr> ";
                print "<td>" .  $person["lastName"] . "</td>";
                print "<td>" .  $person["firstName"] . "</td>";
                print "<td>" .  $person["mail"] . "</td>";
-               print "<td>" .  $person["phone"] . "</td> </tr>";
-             } 
+               print "<td>" .  $person["phone"] . "</td> ";
+
+               //bouton modifier
+               print  '
+               <form method="post" action="modifierClient.php">
+                 <input type="hidden" name="idPerson" value="' .$person["idPerson"]. '">
+                 <input type="hidden" name="lastName" value="' .$person["lastName"]. '">
+                 <input type="hidden" name="firstName" value="' .$person["firstName"]. '">
+                 <input type="hidden" name="mail" value="' .$person["mail"]. '">
+                 <input type="hidden" name="phone" value="' .$person["phone"]. '">
+                 <td><button class="btn waves-effect waves-light pink darken-3 thin" type="submit" name="action"><i class="material-icons">mode_edit</i></button></td>
+               </form>';
+
+               //Bouton supprimer
+              print '<form method="post" action="../controller/suppClient.php">
+                 <input type="hidden" name="idPerson" value="' .$person["idPerson"]. '">
+                <td><button class="btn waves-effect waves-light pink darken-3 thin" type="submit" name="action"><i class="material-icons">delete</i></button></td>
+                </form>';
+
+
+               print "</tr>";
+             }
+            } 
                 
           ?>
 
         </tbody>
       </table>
-      
-      <p class="center">
-             <a href="modifierClient.php" class="btn-floating waves-effect waves-light pink darken-3"><i class="material-icons">mode_edit</i></a>
-             <a href="suppClient.php" class="btn-floating btn-small waves-effect waves-light pink darken-3"><i class="material-icons">delete</i></a>
-
-      </p>
 
 
     </div>

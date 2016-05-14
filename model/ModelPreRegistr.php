@@ -21,20 +21,18 @@ class ModelPreRegistr {
     }
 
     //Vérifie si le participant est déja inscrit
-    public static function checkInscription($event){
+    public static function checkInscription($tab){
         $conn = self::connexion();
-
-        $tab=array(
-                'idClient' => $_COOKIE['idPerson'],
-                'idEvent' => $event,
-            );
 
         $req = $conn->prepare('SELECT * 
                             FROM preRegistr 
                             WHERE idClient = :idClient
                             AND idEvent = :idEvent');
 
-        $req->execute($tab);
+        $req->bindParam(':idClient', $tab['idClient']);
+        $req->bindParam(':idEvent', $tab['idEvent']);
+
+        $req->execute();
         $count = $req->rowCount();
         $req->closeCursor();
 
@@ -53,10 +51,8 @@ class ModelPreRegistr {
 
 		$conn = self::connexion();
 
-			$date=date("Y-m-d");
-
 		    $sql = $conn->prepare("INSERT INTO preRegistr(idClient, idEvent, dateRegistration)
-            VALUES (:idClient, :idEvent, $date)");
+            VALUES (:idClient, :idEvent, CURDATE())");
 
             $sql->bindParam(':idClient', $tab['idClient']);
             $sql->bindParam(':idEvent', $tab['idEvent']);

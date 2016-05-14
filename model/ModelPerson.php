@@ -25,10 +25,10 @@ class ModelPerson {
         //Connexion a la base de données
         $conn = self::connexion();
 
-        $sql = $conn->prepare("INSERT INTO person(pseudo, password, firstName, lastName, birthDate, mail, phone)
-        VALUES (:pseudo, :password, :firstName, :lastName, :birthDate, :mail, :phone)");
+        $sql = $conn->prepare("INSERT INTO person(idPerson, password, firstName, lastName, birthDate, mail, phone)
+        VALUES (:idPerson, :password, :firstName, :lastName, :birthDate, :mail, :phone)");
 
-        $sql->bindParam(':pseudo', $tab['pseudo']);
+        $sql->bindParam(':idPerson', $tab['idPerson']);
         $sql->bindParam(':password', $tab['password']);
         $sql->bindParam(':firstName', $tab['firstName']);
         $sql->bindParam(':lastName', $tab['lastName']);
@@ -58,34 +58,31 @@ class ModelPerson {
     //Modifie les données d'un adhérent
     public static function editPerson($tab) {
         //Connexion a la base de données
-        $conn = self::connexion();
-
-        $sql = $conn->prepare("UPDATE person 
-                               SET firstName = :firstName, lastName = :lastName, mail = :mail, phone = :phone 
-                               WHERE idPerson = :idPerson");
-            
-        $sql->bindParam(':idPerson', $tab['idPerson']);
-        $sql->bindParam(':firstName', $tab['firstName']);
-        $sql->bindParam(':lastName', $tab['lastName']);
-        $sql->bindParam(':mail', $tab['mail']);
-        $sql->bindParam(':phone', $tab['phone']); 
-
-        $res=$sql->execute();
-        $sql->closeCursor(); 
-        echo "<script type='text/javascript'>document.location.replace('../view/client.php');</script>";    
+            $conn = self::connexion();
+            $sql = $conn->prepare("UPDATE person 
+                                   SET firstName = :firstName, lastName = :lastName, mail = :mail, phone = :phone 
+                                   WHERE idPerson = :idPerson");
+                
+                $sql->bindParam(':idPerson', $tab['idPerson']);
+                $sql->bindParam(':firstName', $tab['firstName']);
+                $sql->bindParam(':lastName', $tab['lastName']);
+                $sql->bindParam(':mail', $tab['mail']);
+                $sql->bindParam(':phone', $tab['phone']); 
+                $res=$sql->execute();
+                echo "<script type='text/javascript'>document.location.replace('../view/client.php');</script>";
+              
     }
-
-    //Supprime une personne de la base de données
     public static function suppPerson($supp){
 
-        $conn = self::connexion();
+            $conn = self::connexion();
 
-        $sql = $conn->prepare('DELETE FROM person 
-                WHERE idPerson = :idPerson');
+            $sql = $conn->prepare('DELETE FROM person 
+                    WHERE idPerson = :idPerson');
 
-        $res=$sql->execute($supp);
-        $sql->closeCursor();
-        echo "<script type='text/javascript'>document.location.replace('../view/client.php');</script>";
+            $res=$sql->execute($supp);
+            $sql->closeCursor();
+            echo "<script type='text/javascript'>document.location.replace('../view/client.php');</script>";
+
     }
 
     //Recherche une personne à partie d'un mot ou d'une partie de mot donnée
@@ -104,18 +101,17 @@ class ModelPerson {
     }
 
     //Vérifie si le pseudo existe déja dans la base de données
-    public static function checkPseudo($pseudo){
+    public static function checkPseudo($tab){
         $conn = self::connexion();
-
-        $tab=array(
-                'pseudo' => $pseudo,
-                    );
 
         $req = $conn->prepare('SELECT * 
                             FROM person 
-                            WHERE pseudo = :pseudo');
+                            WHERE idPerson = :idPerson');
 
-        $req->execute($tab);
+
+        $req->bindParam(':idPerson', $tab['idPerson']);
+
+        $req->execute();
         $count = $req->rowCount();
         $req->closeCursor();
 
@@ -135,7 +131,7 @@ class ModelPerson {
         $conn = self::connexion();
 
         $req = $conn->prepare(' SELECT * FROM person 
-                                WHERE pseudo = :pseudo');
+                                WHERE idPerson = :idPerson');
 
         $req->execute($tab);
         $data = $req->fetch(); 

@@ -8,31 +8,32 @@
     <h1>Modification de client</h1>
 
       <div class="row">
-        <form method="post" action="../controller/editPerson.php" class="col s12">
-          
 
-            <div class="input-field col s12">
-              <input placeholder="N° de la personne à modifier" id="id" name="id" type="text" class="validate">
-              <label for="id">N°</label>
-            </div>
+
+
+
+        <form method="post" action="../controller/editPerson.php" class="col s12">
+    
+
+            <input type="hidden" name="idPerson" value="<?php echo $_POST['idPerson']?>">
 
              <div class="input-field col s12">
-              <input  id="firstName" name="firstName" type="text" class="validate">
+              <input  placeholder="<?php echo $_POST['firstName']?>" id="firstName" name="firstName" type="text" class="validate">
               <label for="firstName">Prénom</label>
             </div>
 
             <div class="input-field col s12">
-             <input id="lastName" name="lastName" type="text" class="validate">
+             <input placeholder="<?php echo $_POST['lastName']?>" id="lastName" name="lastName" type="text" class="validate">
               <label for="lastName">Nom</label>
             </div>
 
             <div class="input-field col s12">
-                <input id="mail" name="mail" type="email" class="validate">
+                <input placeholder="<?php echo $_POST['mail']?>" id="mail" name="mail" type="email" class="validate">
                 <label for="mail">Email</label>
           </div>
 
           <div class="input-field col s12">
-             <input id="phone" name="phone" type="text" class="validate">
+             <input placeholder="<?php echo $_POST['phone']?>" id="phone" name="phone" type="text" class="validate">
               <label for="phone">Telephone</label>
             </div>
           
@@ -48,6 +49,8 @@
     </div>
  <!-- </input>-->
   </form>
+
+
   </div>
 
 

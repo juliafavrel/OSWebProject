@@ -13,7 +13,6 @@
             <table class="bordered">
                     <thead>
                       <tr>
-                        <th data-field="id">N°</th>
                         <th data-field="nomevt">Nom</th>
                         <th data-field="lieuevt">Lieu</th>
                         <th data-field="dateevt">Date</th>
@@ -36,8 +35,7 @@
 
                         $datas = ModelEvent::searchEvt($tab);
                         foreach($datas as $data) {
-                           print "<tr> <td>" .  $data["idEvt"] . "</td>";
-                           print "<td>" .  $data["nameEvt"] . "</td>";
+                           print "<tr> <td>" .  $data["nameEvt"] . "</td>";
                            print "<td>" .  $data["placeEvt"] . "</td>";
                            print "<td>" .  $data["dateEvt"] . "</td>";
                            print "<td>" .  $data["priceEvt"] . "</td>";

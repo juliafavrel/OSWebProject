@@ -11,6 +11,7 @@ if (isset($_COOKIE['idPerson'])){
                 <ul class="right hide-on-med-and-down"> 
                   <li><a href="client.php">Clients</a></li>
                   <li><a href="evenements.php">Evènements</a></li> 
+                  <li><a href="eventsClasses.php">Participants</a></li> 
                   <li><a href="preinscr.php">Pré-inscriptions</a></li>
                   <li><a href="inscription.php">Inscriptions</a></li>
                   <li><a href="../controller/deconnexion.php">Déconnexion</a></li>
@@ -22,6 +23,7 @@ if (isset($_COOKIE['idPerson'])){
                   <ul id="nav-mobile" class="side-nav">
                     <li><a href="client.php">Clients</a></li>
                     <li><a href="evenements.php">Evènements</a></li> 
+                    <li><a href="eventsClasses.php">Participants</a></li> 
                     <li><a href="preinscr.php">Pré-inscriptions</a></li>
                     <li><a href="inscription.php">Inscriptions</a></li>
                     <li><a href="../controller/deconnexion.php">Déconnexion</a></li>

@@ -24,13 +24,14 @@
        <table class="bordered">
         <thead>
           <tr>
-              <th data-field="id">N°</th>
               <th data-field="nomevt">Nom</th>
               <th data-field="lieuevt">Lieu</th>
               <th data-field="dateevt">Date</th>
               <th data-field="prixevt">Prix</th>
               <th data-field="desc">Decription</th>
               <th data-field="placerestevt">Places restantes</th>
+              <th data-field="edit"></th>
+              <th data-field="supp"></th>
           </tr>
         </thead>
 
@@ -43,26 +44,37 @@
 
             foreach($events as $event) {
 
-             print "<tr> <td>" .  $event["idEvt"] . "</td>";
+             print "<tr>";
              print "<td>" .  $event["nameEvt"] . "</td>";
              print "<td>" .  $event["placeEvt"] . "</td>";
              print "<td>" .  $event["dateEvt"] . "</td>";
              print "<td>" .  $event["priceEvt"] . "€" . "</td>";
              print "<td>" .  $event["descEvt"] . "</td>";
-             print "<td>" .  $event["nbEvt"] . "</td> </tr>";
+             print "<td>" .  $event["nbEvt"] . "</td>";
 
-             
+              //bouton modifier
+               print  '
+               <form method="post" action="modifierEvt.php">
+                 <input type="hidden" name="idEvt" value="' .$event["idEvt"]. '">
+                 <input type="hidden" name="nameEvt" value="' .$event["nameEvt"]. '">
+                 <input type="hidden" name="placeEvt" value="' .$event["placeEvt"]. '">
+                 <input type="hidden" name="priceEvt" value="' .$event["priceEvt"]. '">
+                 <input type="hidden" name="descEvt" value="' .$event["descEvt"]. '">
+                 <input type="hidden" name="nbEvt" value="' .$event["nbEvt"]. '">
+                 <td><button class="btn waves-effect waves-light pink darken-3 thin" type="submit" name="action"><i class="material-icons">mode_edit</i></button></td>
+               </form>';
+
+               //Bouton supprimer
+              print '<form method="post" action="../controller/suppEvt.php">
+                 <input type="hidden" name="idEvt" value="' .$event["idEvt"]. '">
+                <td><button class="btn waves-effect waves-light pink darken-3 thin" type="submit" name="action"><i class="material-icons">delete</i></button></td>
+                </form>';
 
 
-            /*<td>   <a href="editevt.php" class="btn-floating btn-small waves-effect waves-light pink darken-3"><i class="material-icons">mode_edit</i></a>
-
-            </td>
-            <td> <a class="btn-floating btn-small waves-effect waves-light pink darken-3"><i class="material-icons">delete</i></a>
-            </td>
-          </tr>*/
-        }
-
-?>
+               print "</tr>";
+             } 
+                
+          ?>
           
         </tbody>
       </table>
@@ -71,18 +83,6 @@
       <a href="ajoutevt.php">
         <button class="btn waves-effect waves-light pink darken-3 thin" type="submit" name="action">
           Ajouter
-        </button>
-      </a>
-
-      <a href="modifierEvt.php">
-        <button class="btn waves-effect waves-light pink darken-3 thin" type="submit" name="action">
-          Modifier
-        </button>
-      </a>
-
-       <a href="suppEvt.php">
-        <button class="btn waves-effect waves-light pink darken-3 thin" type="submit" name="action">
-          Supprimer
         </button>
       </a>
     </p>

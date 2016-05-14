@@ -8,49 +8,45 @@
     <h1>Modification d'un évènement</h1>
 
       <div class="row">
-        <form method="post" action="../controller/editEvent.php" class="col s12">
-          
+         <form method="post" action="../controller/editEvent.php" class="col s12">
 
-            <div class="input-field col s12">
-              <input placeholder="N° de l'évènement à modifier" id="idEvt" name="idEvt" type="text" class="validate">
-              <label for="idEvt">N°</label>
-            </div>
+            <input type="hidden" name="idEvt" value="<?php echo $_POST['idEvt']?>">
 
-
-            <div class="input-field col s12">
-              <input  id="nameEvt" name="nameEvt" type="text" class="validate">
-              <label for="nameEvt">Nom</label>
+             <div class="input-field col s12">
+              <input  placeholder="<?php echo $_POST['nameEvt']?>" id="nameEvt" name="nameEvt" type="text" class="validate">
+              <label for="nameEvt">Evènement</label>
             </div>
 
             <div class="input-field col s12">
-             <input id="placeEvt" name="placeEvt" type="text" class="validate">
+             <input placeholder="<?php echo $_POST['placeEvt']?>" id="placeEvt" name="placeEvt" type="text" class="validate">
               <label for="placeEvt">Lieu</label>
             </div>
 
+              <div class="valign-wrapper col s3">
+                <p class="valign"><font color='grey'> Date </font></p>
+              </div>
 
-            <div class="valign-wrapper col s3">
-              <p class="valign"><font color='grey'> Date </font></p>
+              
+            <div class="input-field col s12">
+                <input placeholder="<?php echo $_POST['dateEvt']?>" id="dateEvt" name="dateEvt" type="date" class="validate">
+                <label for="dateEvt"></label>
+          </div>
+
+          <div class="input-field col s12">
+             <input placeholder="<?php echo $_POST['priceEvt']?>" id="priceEvt" name="priceEvt" type="text" class="validate">
+              <label for="priceEvt">Prix</label>
             </div>
 
-            <div class="input-field col s12">
-             <input id="dateEvt" name="dateEvt" type="date" class="validate">
-              <label for="dateEvt"></label>
-            </div>
-
-            <div class="input-field col s12">
-                <input id="priceEvt" name="priceEvt" type="text" class="validate">
-                <label for="priceEvt">Prix</label>
-            </div>
-
-            <div class="input-field col s12">
-             <input id="descEvt" name="descEvt" type="text" class="validate">
+          <div class="input-field col s12">
+             <input placeholder="<?php echo $_POST['descEvt']?>" id="descEvt" name="descEvt" type="text" class="validate">
               <label for="descEvt">Description</label>
             </div>
 
-            <div class="input-field col s12">
-                <input id="nbEvt" name="nbEvt" type="text" class="validate">
-                <label for="nbEvt">Places disponibles</label>
+           <div class="input-field col s12">
+             <input placeholder="<?php echo $_POST['nbEvt']?>" id="nbEvt" name="nbEvt" type="text" class="validate">
+              <label for="nbEvt">Places Disponibles</label>
             </div>
+          
             
           
         
