@@ -58,6 +58,7 @@
               <th data-field="dateEvt">Date</th>
               <th data-field="priceEvt">Prix</th>
               <th data-field="descEvt">Description</th>
+              <th data-field="supp"></th>
           </tr>
         </thead>
 
@@ -76,7 +77,13 @@
                print "<td>" .  $line["placeEvt"] . "</td>";
                print "<td>" .  $line["dateEvt"] . "</td>";
                print "<td>" .  $line["priceEvt"] . "</td>";
-               print "<td>" .  $line["descEvt"] . "</td> </tr>";
+               print "<td>" .  $line["descEvt"] . "</td>";
+                //Bouton supprimer
+               print '<form method="post" action="../controller/suppPreInscrClient.php" accept-charset="utf-8">
+                       <input type="hidden" name="idClient" value="'.$_COOKIE["idPerson"].'"> 
+                       <input type="hidden" name="idEvent" value="' .$line["idEvt"].'" >';
+               print "<td>" .  ' <button class="btn waves-effect waves-light pink darken-3 thin" type="submit" name="action"><i class="material-icons">delete</i></button>'. "</td> </tr>";
+               print '</form>';
              } 
                 
           ?>

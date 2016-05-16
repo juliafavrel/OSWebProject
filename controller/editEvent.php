@@ -4,7 +4,7 @@ require_once  '../model/ModelEvent.php';
 
 	if( ($_POST['idEvt'] == '') OR ($_POST['nameEvt'] == '')  OR ($_POST['placeEvt'] == '') OR ($_POST['dateEvt'] == '' ) OR ($_POST['priceEvt'] == '') OR ($_POST['descEvt'] == '') OR ($_POST['nbEvt'] == '')) {
 		echo 'Veuillez remplir tous les champs.
-		<p>Cliquez <a href="../view/modifierEvt.php">ici</a> pour recommencer.</p>';
+		<p>Cliquez <a href="../view/evenements.php">ici</a> pour revenir en arrière et recommencer.</p>';
 		
 	}
 	else{
@@ -27,6 +27,8 @@ require_once  '../model/ModelEvent.php';
 			        );
 		
 		ModelEvent::editEvt($tab);
+	 	header('Location: ../view/evenements.php');
+
 	}
 
 ?>

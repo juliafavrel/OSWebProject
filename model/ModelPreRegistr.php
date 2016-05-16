@@ -1,23 +1,22 @@
 <?php
 
 class ModelPreRegistr {
+
     //Se connecte a la base de donnée
     public static function connexion(){
         $servername = "localhost";
-        $username = "juju";
-        $pass = "salut";
+        $username = "julia";
+        $pass = "julia";
         $dbname = "club";
 
-            try{
-                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $pass);
-                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                return $conn;
-
-            }
-            catch (PDOException $e) {
-                echo 'Échec lors de la connexion : ' . $e->getMessage();
-            }
-
+        try{
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $pass);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $conn;
+        }
+        catch (PDOException $e) {
+            echo 'Échec lors de la connexion : ' . $e->getMessage();
+        }
     }
 
     //Vérifie si le participant est déja inscrit
@@ -48,26 +47,20 @@ class ModelPreRegistr {
 
     //Créer un préInscription avec que le client ait cliqué sur le bouton S'inscrire
 	public static function preInscription($tab){
-
 		$conn = self::connexion();
 
-		    $sql = $conn->prepare("INSERT INTO preRegistr(idClient, idEvent, dateRegistration)
-            VALUES (:idClient, :idEvent, CURDATE())");
+	    $sql = $conn->prepare("INSERT INTO preRegistr(idClient, idEvent, dateRegistration)
+        VALUES (:idClient, :idEvent, CURDATE())");
 
-            $sql->bindParam(':idClient', $tab['idClient']);
-            $sql->bindParam(':idEvent', $tab['idEvent']);
+        $sql->bindParam(':idClient', $tab['idClient']);
+        $sql->bindParam(':idEvent', $tab['idEvent']);
 
-            $res = $sql->execute();
-            $sql->closeCursor();
-
-   
-            echo "<script type='text/javascript'>document.location.replace('../view/mesinscription.php');</script>";
-
+        $res = $sql->execute();
+        $sql->closeCursor();
 	}
 
     //Retourne toutes les preregistr
 	public static function getAllPreRegistr(){
-
 			$conn = self::connexion();
 		    
             $sql = "SELECT idClient, idEvent, firstName, lastName, nameEvt, placeEvt, dateEvt, dateRegistration 
@@ -79,86 +72,48 @@ class ModelPreRegistr {
             $prereg=$conn->query($sql);
             $result = $prereg->fetchAll();
             return $result;
-            
-           
-
             $res = $sql->execute();
             $sql->closeCursor();
-
 	}
 
     //Valide une préInscription, ce qui l'ajoute à la table registr et supprime la preRegistr grace au trigger
     public static function validerPreReg($tab){
-
         $conn = self::connexion();
 
         $sql = $conn->prepare("INSERT INTO registr(idClient, idEvent)
         VALUES (:idClient, :idEvent)");
         
-        //$sql->bindParam(':idClient', $tab['idClient']);
-        //$sql->bindParam(':idEvent', $tab['idEvent']);
-        
         $res=$sql->execute($tab);
         $sql->closeCursor();
-
-        echo "<script type='text/javascript'>document.location.replace('../view/inscription.php');</script>";
-
     }
 
+    //Retourne la liste des pre-inscription du client passé en paramètre
     public static function getMyPreRegistr($tab){
+        $conn = self::connexion();
 
-    $conn = self::connexion();
+        $req = $conn->prepare(' SELECT idEvt, nameEvt, placeEvt, dateEvt, priceEvt, descEvt
+                                FROM evt, preRegistr 
+                                WHERE idClient = :idPerson
+                                AND idEvent = idEvt'); 
 
-    $req = $conn->prepare(' SELECT nameEvt, placeEvt, dateEvt, priceEvt, descEvt
-                            FROM evt, preRegistr 
-                            WHERE idClient = :idPerson
-                            AND idEvent = idEvt'); 
-
-    $req->execute($tab); //Execution of the request
-    $data = $req->fetchAll(); //List all the result in array
-    return $data; //Return the array
- 
-    $req->closeCursor();
-
+        $req->execute($tab); 
+        $data = $req->fetchAll(); 
+        return $data; 
+        $req->closeCursor();
     }
 
-      public static function suppPreInscr($supp){
+    //Supprime la pré-inscription passée en paramètre
+    public static function suppPreInscr($supp){
+        $conn = self::connexion();
 
-            $conn = self::connexion();
+        $sql = $conn->prepare('DELETE FROM preRegistr 
+                WHERE idClient = :idClient
+                AND idEvent = :idEvent;');
 
-            $sql = $conn->prepare('DELETE FROM preRegistr 
-                    WHERE idClient = :idClient
-                    AND idEvent = :idEvent;');
-
-            $res=$sql->execute($supp);
-            $sql->closeCursor();
-            echo "<script type='text/javascript'>document.location.replace('../view/preinscr.php');</script>";
+        $res=$sql->execute($supp);
+        $sql->closeCursor();
 
     }
-
-    public static function searchPreInscription($search) {
-
-            $conn = self::connexion();
-            //Prepare the selection
-
-            $req = $conn->prepare(' SELECT DISTINCT idClient, idEvent, firstName, lastName, nameEvt, placeEvt, dateEvt 
-                                    FROM person , evt , registr 
-                                    WHERE idClient=idPerson
-                                    AND idEvent=idEvt
-                                    AND firstName LIKE "%":search"%" 
-                                    OR lastName LIKE "%":search"%"
-                                    OR nameEvt LIKE "%":search"%"
-                                    OR placeEvt LIKE "%":search"%"'); 
-
-            $req->execute($search); //Execution of the request
-            $data = $req->fetchAll(); //List all the result in array
-            return $data; //Return the array
-      }
-
-
-
-
-
 
 }
 

@@ -12,7 +12,7 @@ require_once  '../model/ModelPreRegistr.php';
 
 	ModelPreRegistr::suppPreInscr($supp);
 
-	header('Location: ../view/preinscr.php');
+	header('Location: ../view/mesinscription.php');
 
 					
 ob_end_flush(); ?>

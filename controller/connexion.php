@@ -1,7 +1,8 @@
 <?php ob_start(); 
 
-		require '../model/ModelPerson.php';
-        
+	require '../model/ModelPerson.php';
+    
+        //Vérifie si les champs ne sont pas vide et les place dans les variables en les cryptant
         if(isset($_POST["idPerson"]))
         {
            $pseudo = sha1($_POST['idPerson']);
@@ -29,8 +30,7 @@
             if ($data[1] == $password) //Si le mot de passe est le bon
             {
                 $expire = 3600*24*15;
-                 setcookie("idPerson",$data[0],time()+ $expire,"/projetBapt/",null);
-
+                setcookie("idPerson",$data[0],time()+ $expire,"/projetBapt/",null);
                 header('Location: ../view/accueil.php');
 
             }

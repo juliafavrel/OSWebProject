@@ -1,12 +1,13 @@
 <?php ob_start();
 require_once  '../model/ModelPerson.php';
 
-				$idPerson = $_POST['idPerson'];
+	$idPerson = $_POST['idPerson'];
 
-				$supp=array(
-					            'idPerson' => $idPerson,
-					        );
+	$supp=array(
+		            'idPerson' => $idPerson,
+		        );
 
-					ModelPerson::suppPerson($supp);
+	ModelPerson::suppPerson($supp);
+	header('Location: ../view/client.php');
 		
 ob_end_flush(); ?>

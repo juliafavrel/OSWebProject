@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 require_once  '../model/ModelPreRegistr.php';
 
@@ -11,4 +11,5 @@ require_once  '../model/ModelPreRegistr.php';
 		        );
 	
 	ModelPreRegistr::validerPreReg($valider);
+	header('Location: ../view/preinscr.php');
 ?>

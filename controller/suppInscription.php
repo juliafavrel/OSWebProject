@@ -10,6 +10,8 @@ require_once  '../model/ModelRegistr.php';
 		            'idEvent' => $idEvent,
 		        );
 
-		ModelRegistr::suppInscription($supp);
+	ModelRegistr::suppInscription($supp);
+
+	header('Location: ../view/eventsClasses.php');
 					
 ob_end_flush(); ?>

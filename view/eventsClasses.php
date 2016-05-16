@@ -25,7 +25,8 @@
                     print "<th>" .  $event["placeEvt"] . "</th>";
                     print "<th>" .  $event["dateEvt"] . "</th>";
                     print "<th>" .  $event["descEvt"] . "</th>";
-                    print "<th> Nombre de places : " .  $event["nbEvt"] . "</th> </tr>";
+                    print "<th> Places restantes : " .  $event["nbEvt"] . "</th>";
+                    print "<th></th> </tr>";
                     
                   
                   print '</thead>
@@ -43,7 +44,13 @@
                             <td>' .  $person["firstName"] . '</td>
                             <td>' .  $person["birthDate"] . '</td>
                             <td>' .  $person["mail"] . '</td>
-                            <td>' .  $person["phone"] . '</td></tr> ';
+                            <td>' .  $person["phone"] . '</td>';
+                    //Bouton supprimer
+                   print '<form method="post" action="../controller/suppInscription.php" accept-charset="utf-8">
+                           <input type="hidden" name="idClient" value="'.$person["idPerson"].'"> 
+                           <input type="hidden" name="idEvent" value="' .$event["idEvt"].'" >';
+                   print "<td>" .  ' <button class="btn waves-effect waves-light pink darken-3 thin" type="submit" name="action"><i class="material-icons">delete</i></button>'. "</td> </tr>";
+                   print '</form>';
 
                   }
               
@@ -58,10 +65,6 @@
  
    ?> 
 
-
-
-
- <?php include("contact.php"); ?>
 
  <?php include("image-deroulante.php"); ?>
 

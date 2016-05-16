@@ -6,10 +6,9 @@ class ModelPerson {
     //Connection a la base de données
     public static function connexion(){
         $servername = "localhost";
-        $username = "juju";
-        $pass = "salut";
+        $username = "julia";
+        $pass = "julia";
         $dbname = "club";
-
         try{
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $pass);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -22,7 +21,6 @@ class ModelPerson {
 
     //Ajoute un membre dans la base de données
     public static function addPerson($tab){
-        //Connexion a la base de données
         $conn = self::connexion();
 
         $sql = $conn->prepare("INSERT INTO person(idPerson, password, firstName, lastName, birthDate, mail, phone)
@@ -35,57 +33,56 @@ class ModelPerson {
         $sql->bindParam(':birthDate', $tab['birthDate']);
         $sql->bindParam(':mail', $tab['mail']);
         $sql->bindParam(':phone', $tab['phone']);
-        
+
         $res = $sql->execute();
         $sql->closeCursor();
-
-        echo "<script type='text/javascript'>document.location.replace('../view/accueil.php');</script>";        
+       
     }
 
     //Retourne tous les adhérents
     public static function getAllPerson() {
+        $conn = self::connexion();
 
-            $conn = self::connexion();
+        $sql = "SELECT * FROM person
+                ORDER BY lastName";
 
-            $sql = "SELECT * FROM person
-                    ORDER BY lastName";
-            $users=$conn->query($sql);
-            $result = $users->fetchAll();
-            return $result;
-            $sql->closeCursor();
+        $users=$conn->query($sql);
+        $result = $users->fetchAll();
+        return $result;
+        $sql->closeCursor();
     }
 
     //Modifie les données d'un adhérent
     public static function editPerson($tab) {
-        //Connexion a la base de données
-            $conn = self::connexion();
-            $sql = $conn->prepare("UPDATE person 
-                                   SET firstName = :firstName, lastName = :lastName, mail = :mail, phone = :phone 
-                                   WHERE idPerson = :idPerson");
-                
-                $sql->bindParam(':idPerson', $tab['idPerson']);
-                $sql->bindParam(':firstName', $tab['firstName']);
-                $sql->bindParam(':lastName', $tab['lastName']);
-                $sql->bindParam(':mail', $tab['mail']);
-                $sql->bindParam(':phone', $tab['phone']); 
-                $res=$sql->execute();
-                echo "<script type='text/javascript'>document.location.replace('../view/client.php');</script>";
-              
+        $conn = self::connexion();
+
+        $sql = $conn->prepare("UPDATE person 
+                               SET firstName = :firstName, lastName = :lastName, mail = :mail, phone = :phone 
+                               WHERE idPerson = :idPerson");
+            
+        $sql->bindParam(':idPerson', $tab['idPerson']);
+        $sql->bindParam(':firstName', $tab['firstName']);
+        $sql->bindParam(':lastName', $tab['lastName']);
+        $sql->bindParam(':mail', $tab['mail']);
+        $sql->bindParam(':phone', $tab['phone']); 
+
+        $res = $sql->execute();
+        $sql->closeCursor();
     }
+
+    //Supprime une personne de la base de données
     public static function suppPerson($supp){
 
-            $conn = self::connexion();
+        $conn = self::connexion();
 
-            $sql = $conn->prepare('DELETE FROM person 
-                    WHERE idPerson = :idPerson');
+        $sql = $conn->prepare('DELETE FROM person 
+                WHERE idPerson = :idPerson');
 
-            $res=$sql->execute($supp);
-            $sql->closeCursor();
-            echo "<script type='text/javascript'>document.location.replace('../view/client.php');</script>";
-
+        $res=$sql->execute($supp);
+        $sql->closeCursor();
     }
 
-    //Recherche une personne à partie d'un mot ou d'une partie de mot donnée
+    //Recherche une personne à partir d'un mot ou d'une partie de mot donnée
     public static function searchPerson($search) {
 
         $conn = self::connexion();
@@ -127,7 +124,6 @@ class ModelPerson {
 
     //Retourne toutes les informations de client qui souhaite se connecter
     public static function connexionPerson($tab){
-
         $conn = self::connexion();
 
         $req = $conn->prepare(' SELECT * FROM person 
